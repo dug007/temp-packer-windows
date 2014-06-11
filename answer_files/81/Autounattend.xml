@@ -32,8 +32,8 @@
                 <FullName>Vagrant Administrator</FullName>
                 <Organization>Vagrant Inc.</Organization>
                 <!-- Product Key from http://technet.microsoft.com/en-us/library/ff793406.aspx -->
-                <ProductKey>XC9B7-NBPP2-83J2H-RHMBY-92BT4
-                    <WillShowUI>Never</WillShowUI>
+                <ProductKey>
+                  <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
             <ImageInstall>
@@ -47,7 +47,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows 8.1 Enterprise Evaluation</Value>
+                            <Value>Windows 8.1 Enterprise</Value>
                         </MetaData>
                     </InstallFrom>
                 </OSImage>

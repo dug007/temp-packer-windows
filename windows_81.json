@@ -2,9 +2,9 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "iso_url": "http://care.dlservice.microsoft.com/dl/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
-            "iso_checksum_type": "md5",
-            "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win81_enterprise_en/SW_DVD9_SA_Win_Ent_8.1_64BIT_English_-2_MLF_X19-49847.ISO",
+            "iso_checksum_type": "sha1",
+            "iso_checksum": "8fb332a827998f807a1346bef55969c6519668b9",
             "headless": false,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
@@ -18,8 +18,9 @@
             "vnc_port_max": 5980,
             "floppy_files": [
                 "./answer_files/81/Autounattend.xml",
+                "./scripts/dis-updates.ps1",
                 "./scripts/win-updates.ps1",
-                "./scripts/openssh.ps1"
+                "./scripts/vcloud/openssh.ps1"
             ],
             "vmx_data": {
                 "RemoteDisplay.vnc.enabled": "false",
@@ -31,9 +32,9 @@
         },
         {
             "type": "virtualbox-iso",
-            "iso_url": "http://care.dlservice.microsoft.com/dl/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
-            "iso_checksum_type": "md5",
-            "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win81_enterprise_en/SW_DVD9_SA_Win_Ent_8.1_64BIT_English_-2_MLF_X19-49847.ISO",
+            "iso_checksum_type": "sha1",
+            "iso_checksum": "8fb332a827998f807a1346bef55969c6519668b9",
             "headless": false,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
@@ -44,8 +45,9 @@
             "disk_size": 61440,
             "floppy_files": [
                 "./answer_files/81/Autounattend.xml",
+                "./scripts/dis-updates.ps1",
                 "./scripts/win-updates.ps1",
-                "./scripts/openssh.ps1",
+                "./scripts/vcloud/openssh.ps1",
                 "./scripts/oracle-cert.cer"
             ],
             "vboxmanage": [
@@ -61,7 +63,8 @@
             "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
             "scripts": [
                 "./scripts/vm-guest-tools.bat",
-                "./scripts/chef.bat",
+                "./scripts/chocolatey.bat",
+                "./scripts/enable-remote-desktop.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         },
