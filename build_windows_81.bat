@@ -1,5 +1,5 @@
 if exist windows_81_virtualbox.box (
-  del /Y windows_81_virtualbox.box
+  del /F windows_81_virtualbox.box
 )
 
 packer build -only=virtualbox-iso windows_81.json
