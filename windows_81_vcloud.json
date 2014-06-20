@@ -55,7 +55,7 @@
     ],
     "post-processors": [
         {
-            "type": "vagrant",
+            "type": "vagrant-vmware-ovf",
             "provider": "vcloud",
             "keep_input_artifact": false,
             "output": "windows_81_{{.Provider}}.box",
