@@ -2,9 +2,9 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
-            "iso_checksum_type": "md5",
-            "iso_checksum": "1d0d239a252cb53e466d39e752b17c28",
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win7sp1_enterprise_en/x64/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
+            "iso_checksum_type": "sha1",
+            "iso_checksum": "a491f985dccfb5863f31b728dddbedb2ff4df8d1",
             "headless": true,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
@@ -32,13 +32,10 @@
         }, 
         {
             "type": "virtualbox-iso",
-            "iso_urls": [
-              "file:///D:/ISO/Windows 7/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
-              "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso"
-            ],
-            "iso_checksum_type": "md5",
-            "iso_checksum": "6467c3875955df4514395f0afcaaa62a",
-            "headless": false,
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win7sp1_enterprise_en/x64/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
+            "iso_checksum_type": "sha1",
+            "iso_checksum": "a491f985dccfb5863f31b728dddbedb2ff4df8d1",
+            "headless": true,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
@@ -66,7 +63,8 @@
             "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
             "scripts": [
                 "./scripts/vm-guest-tools.bat",
-                "./scripts/chef.bat",
+                "./scripts/installnet4.bat",
+                "./scripts/chocolatey.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         }, 
