@@ -49,6 +49,7 @@
                 "./scripts/installnet4.bat",
                 "./scripts/chocolatey.bat",
                 "./scripts/enable-remote-desktop.bat",
+                "./scripts/enable-winrm.bat",
                 "./scripts/vagrant-ssh.bat"
             ]
         }, 
