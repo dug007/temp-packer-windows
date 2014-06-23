@@ -62,6 +62,10 @@ if ($is_64bit) {
 }
 Set-Content C:\Users\vagrant\.ssh\environment $sshenv
 
+if (!($env:PATH -contains "OpenSSH")) {
+  $env:PATH += ";C:\Program Files\OpenSSH\bin"
+}
+
 # record the path for provisioners (without the newline)
 Write-Host "Recording PATH for provisioners"
 Set-Content C:\Windows\Temp\PATH ([byte[]][char[]] $env:PATH) -Encoding Byte
@@ -77,6 +81,9 @@ Write-Host "Configuring firewall"
 netsh advfirewall firewall add rule name="SSHD" dir=in action=allow service=OpenSSHd enable=yes
 netsh advfirewall firewall add rule name="SSHD" dir=in action=allow program="C:\Program Files\OpenSSH\usr\sbin\sshd.exe" enable=yes
 netsh advfirewall firewall add rule name="ssh" dir=in action=allow protocol=TCP localport=22
+
+# helper for WinRM
+netsh advfirewall firewall add rule name="WinRM" dir=in action=allow protocol=TCP localport=5985
 
 if ($AutoStart -eq $true) {
     Start-Service "OpenSSHd"
