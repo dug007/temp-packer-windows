@@ -61,9 +61,10 @@ goto :done
 :create_vagrantfile
 
 rem to test if rsync works
-if not exist testdir\testfile.txt
-mkdir testdir
-echo Works >testdir\testfile.txt
+if not exist testdir\testfile.txt (
+  mkdir testdir
+  echo Works >testdir\testfile.txt
+)
 
 echo Vagrant.configure('2') do ^|config^| >Vagrantfile
 echo   config.vm.box = '%box_name%' >>Vagrantfile
