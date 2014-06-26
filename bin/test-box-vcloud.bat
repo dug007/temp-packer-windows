@@ -1,11 +1,11 @@
 rem 
-rem bin\test-box-vcloud.bat windows_81_vcloud.box windows_81 vcloud vcloud ../test/*_spec.rb
+rem bin\test-box-vcloud.bat windows_81_vcloud.box windows_81 vcloud vcloud
 
 set box_path=%1
 set box_name=%2
 set box_provider=%3
 set vagrant_provider=%4
-set test_src_path=%5
+set test_src_path=../test/*_spec.rb
 
 set tmp_path=boxtest
 
