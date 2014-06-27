@@ -1,0 +1,11 @@
+Vagrant.configure('2') do |config|
+  config.vm.box = 'windows_81'
+  config.vm.provider :vcloud do |vcloud|
+    vcloud.vapp_prefix = "windows_81"
+    vcloud.catalog_name = "BASEBOX-TESTING"
+  end
+  config.vm.provision :serverspec do |spec|
+    spec.pattern = '../test/*_spec.rb'
+  end
+end
+

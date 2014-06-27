@@ -3,4 +3,5 @@ require 'pathname'
 require 'net/ssh'
 
 include SpecInfra::Helper::Ssh
-include SpecInfra::Helper::DetectOS
+# include Serverspec::Helper::Cmd
+include Serverspec::Helper::Windows
