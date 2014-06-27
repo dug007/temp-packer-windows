@@ -2,24 +2,23 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "vm_name": "windows_2012_r2",
-            "iso_checksum": "fb101ed6d7328aca6473158006630a9d",
+            "vm_name": "windows_2008_r2-100gb",
+            "iso_checksum": "8d397b69135d207452a78c3c3051339d",
             "iso_checksum_type": "md5",
-            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win2012r2_datacenter_en/SW_DVD9_Windows_Svr_Std_and_DataCtr_2012_R2_64Bit_English_-2_Core_MLF_X19-31419.ISO",
+            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win2008r2sp1_datacenter_en/SW_DVD5_Windows_Svr_DC_EE_SE_Web_2008_R2_64Bit_English_w_SP1_MLF_X17-22580.ISO",
             "headless": false,
             "boot_wait": "2m",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
-            "ssh_wait_timeout": "3h",
+            "ssh_wait_timeout": "2h",
             "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-            "shutdown_timeout" : "300s",
-            "guest_os_type": "windows8srv-64",
+            "guest_os_type": "windows7srv-64",
             "tools_upload_flavor": "windows",
-            "disk_size": 61440,
+            "disk_size": 102400,
             "vnc_port_min": 5900,
             "vnc_port_max": 5980,
             "floppy_files": [
-                "./answer_files/2012_r2/Autounattend.xml",
+                "./answer_files/2008_r2/Autounattend.xml",
                 "./scripts/win-updates.ps1",
                 "./scripts/vcloud/openssh.ps1"
             ],
@@ -37,7 +36,7 @@
             "vmx_data_post": {
                 "ethernet0.virtualDev": "vmxnet3"
             }
-        }
+        } 
     ],
     "provisioners": [
         {
@@ -59,8 +58,8 @@
         {
             "type": "vagrant-vmware-ovf",
             "provider": "vcloud",
-            "output": "windows_2012_r2_{{.Provider}}.box",
-            "vagrantfile_template": "vagrantfile-windows_2012_r2.template"
+            "output": "windows_2008_r2-100gb_{{.Provider}}.box",
+            "vagrantfile_template": "vagrantfile-windows_2008_r2.template"
         }
     ]
 }

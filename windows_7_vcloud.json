@@ -28,7 +28,7 @@
                 "RemoteDisplay.vnc.port": "5900",
                 "memsize": "2048",
                 "numvcpus": "2",
-                "scsi0.virtualDev": "lsisas1068"
+                "scsi0.virtualDev": "lsisas1068",
                 "svga.autodetect": "FALSE",
                 "svga.vramSize": "20971520",
                 "svga.maxWidth": "2560",
@@ -59,9 +59,8 @@
     ],
     "post-processors": [
         {
-            "type": "vagrant",
+            "type": "vagrant-vmware-ovf",
             "provider": "vcloud",
-            "keep_input_artifact": false,
             "output": "windows_7_{{.Provider}}.box",
             "vagrantfile_template": "vagrantfile-windows_7.template"
         }
