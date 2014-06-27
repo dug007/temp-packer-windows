@@ -15,7 +15,7 @@ rem tested only with box-provider=vcloud
 vagrant plugin install vagrant-%box_provider%
 vagrant plugin install vagrant-serverspec
 
-vagrant box remove %box_name% --provider %box_provider%
+vagrant box remove %box_name% --provider=%box_provider%
 vagrant box add %box_name% %box_path%
 mkdir %tmp_path%
 
@@ -42,7 +42,7 @@ if ERRORLEVEL 1 goto :error_vcloud_upload
 pushd %tmp_path%
 call :create_vagrantfile
 set VAGRANT_LOG=warn
-vagrant up --provider %vagrant_provider%
+vagrant up --provider=%vagrant_provider%
 
 echo sleep 10
 ping 1.1.1.1 -n 1 -w 10000 > nul
@@ -50,7 +50,7 @@ ping 1.1.1.1 -n 1 -w 10000 > nul
 vagrant destroy -f
 popd
 
-vagrant box remove %box_name% --provider %box_provider%
+vagrant box remove %box_name% --provider=%box_provider%
 
 goto :done
 
