@@ -13,13 +13,11 @@ Vagrant.configure("2") do |config|
     
     config.vm.guest = :windows  
     config.windows.halt_timeout = 15
-    
-    # Berkshelf
-    # config.berkshelf.enabled = true
-    
-    # Shell - Hello World
-    # config.vm.provision :shell, :inline => "C:\\vagrant\\scripts\\HelloWorld.bat"
-    
+
+    # for vCloud we need two more ports
+    config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", auto_correct: true
+    config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
+
     config.vm.provider :virtualbox do |v, override|
         #v.gui = true
         v.customize ["modifyvm", :id, "--memory", 2048]

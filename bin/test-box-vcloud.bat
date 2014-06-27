@@ -1,5 +1,5 @@
 rem 
-rem bin\test-box-vcloud.bat windows_81_vcloud.box windows_81 vcloud vcloud
+rem bin\test-box-vcloud.bat ubuntu1204_vcloud.box ubuntu1204 vcloud vcloud
 
 set box_path=%1
 set box_name=%2
@@ -68,9 +68,12 @@ if not exist testdir\testfile.txt (
 
 echo Vagrant.configure('2') do ^|config^| >Vagrantfile
 echo   config.vm.box = '%box_name%' >>Vagrantfile
-echo   #config.vm.provision :serverspec do ^|spec^| >>Vagrantfile
-echo   #  spec.pattern = '%test_src_path%' >>Vagrantfile
-echo   #end >>Vagrantfile
+echo     config.vm.provider :vcloud do ^|vcloud^| >>Vagrantfile
+echo       vcloud.vapp_prefix = "%box_name%" >>Vagrantfile
+echo     end >>Vagrantfile
+echo   config.vm.provision :serverspec do ^|spec^| >>Vagrantfile
+echo     spec.pattern = '../test/*_spec.rb' >>Vagrantfile
+echo   end >>Vagrantfile
 echo end >>Vagrantfile
 
 exit /b
