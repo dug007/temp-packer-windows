@@ -99,13 +99,15 @@ if not exist testdir\testfile.txt (
 )
 
 echo Vagrant.configure('2') do ^|config^| >Vagrantfile
-echo   config.vm.box = '%box_name%' >>Vagrantfile
-echo   config.vm.hostname = 'tst' >>Vagrantfile
-echo   config.vm.provider :vcloud do ^|vcloud^| >>Vagrantfile
-echo     vcloud.vapp_prefix = "%box_name%" >>Vagrantfile
-echo   end >>Vagrantfile
-echo   config.vm.provision :serverspec do ^|spec^| >>Vagrantfile
-echo     spec.pattern = '../test/*_spec.rb' >>Vagrantfile
+echo   config.vm.define :"tst" do ^|tst^| >>Vagrantfile
+echo     tst.vm.box = "%box_name%" >>Vagrantfile
+echo     tst.vm.hostname = "tst"
+echo     tst.vm.provider :vcloud do ^|vcloud^| >>Vagrantfile
+echo       vcloud.vapp_prefix = "%box_name%" >>Vagrantfile
+echo     end >>Vagrantfile
+echo     tst.vm.provision :serverspec do ^|spec^| >>Vagrantfile
+echo       spec.pattern = '../test/*_spec.rb' >>Vagrantfile
+echo     end >>Vagrantfile
 echo   end >>Vagrantfile
 echo end >>Vagrantfile
 
