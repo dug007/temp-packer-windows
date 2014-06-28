@@ -1,17 +1,25 @@
 rem 
 rem bin\test-box-vcloud.bat ubuntu1204_vcloud.box ubuntu1204 vcloud vcloud
 
+set quick=0
+
+if "%1x"=="--quickx" (
+  shift
+  set quick=1
+)
 set box_path=%1
 set box_name=%2
 set box_provider=vcloud
 set vagrant_provider=vcloud
 set test_src_path=../test/*_spec.rb
 
-set tmp_path=boxtest
-
 set result=0
 
+set tmp_path=boxtest
 if exist %tmp_path% rmdir /s /q %tmp_path%
+
+if %quick%==1 goto :do_test
+
 
 rem tested only with box-provider=vcloud
 vagrant plugin install vagrant-%box_provider%
@@ -21,7 +29,6 @@ vagrant box remove %box_name% --provider=%box_provider%
 vagrant box add %box_name% %box_path%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 if ERRORLEVEL 1 goto :done
-mkdir %tmp_path%
 
 @set vcloud_hostname=YOUR-VCLOUD-HOSTNAME
 @set vcloud_username=YOUR-VCLOUD-USERNAME
@@ -50,8 +57,10 @@ if ERRORLEVEL 1 goto :error_vcloud_upload
 @echo solution that waits until the import is really finished.
 @ping 1.1.1.1 -n 1 -w 240000 > nul
 
+:do_test
 set result=0
 
+mkdir %tmp_path%
 pushd %tmp_path%
 call :create_vagrantfile
 set VAGRANT_LOG=debug
@@ -69,6 +78,8 @@ set VAGRANT_LOG=warn
 vagrant destroy -f
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 popd
+
+if %quick%==1 goto :done
 
 vagrant box remove %box_name% --provider=%box_provider%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
