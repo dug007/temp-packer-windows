@@ -39,10 +39,10 @@ goto :test_vagrant_box
 @ovftool --acceptAllEulas --vCloudTemplate %VAGRANT_HOME%\boxes\%box_name%\0\%box_provider%\%box_name%.ovf "vcloud://%vcloud_username%:%vcloud_password%@%vcloud_hostname%:443?org=%vcloud_org%&vappTemplate=%box_name%&catalog=%vcloud_catalog%&vdc=%vcloud_vdc%"
 if ERRORLEVEL 1 goto :error_vcloud_upload
 
+:test_vagrant_box
 echo Sleeping 120 seconds for vCloud to finish vAppTemplate import
 ping 1.1.1.1 -n 1 -w 120000 > nul
 
-:test_vagrant_box
 pushd %tmp_path%
 call :create_vagrantfile
 set VAGRANT_LOG=warn
