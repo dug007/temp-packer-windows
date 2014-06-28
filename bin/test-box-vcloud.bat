@@ -3,8 +3,8 @@ rem bin\test-box-vcloud.bat ubuntu1204_vcloud.box ubuntu1204 vcloud vcloud
 
 set box_path=%1
 set box_name=%2
-set box_provider=%3
-set vagrant_provider=%4
+set box_provider=vcloud
+set vagrant_provider=vcloud
 set test_src_path=../test/*_spec.rb
 
 set tmp_path=boxtest
