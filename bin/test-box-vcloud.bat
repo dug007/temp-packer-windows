@@ -49,6 +49,10 @@ ping 1.1.1.1 -n 1 -w 240000 > nul
 pushd %tmp_path%
 call :create_vagrantfile
 set VAGRANT_LOG=debug
+echo USERPROFILE = %USERPROFILE%
+if exist %USERPROFILE%\.ssh\known_hosts type %USERPROFILE%\.ssh\known_hosts
+del /Y %USERPROFILE%\.ssh\known_hosts
+if exist %USERPROFILE%\.ssh\known_hosts echo known_hosts still here!!
 vagrant up --provider=%vagrant_provider%
 if ERRORLEVEL 1 goto :done
 
