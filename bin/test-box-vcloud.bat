@@ -40,8 +40,11 @@ goto :test_vagrant_box
 if ERRORLEVEL 1 goto :error_vcloud_upload
 
 :test_vagrant_box
-echo Sleeping 120 seconds for vCloud to finish vAppTemplate import
-ping 1.1.1.1 -n 1 -w 120000 > nul
+@echo Sleeping 240 seconds for vCloud to finish vAppTemplate import
+@echo Tests with 120 seconds still cause a 500 internal error while powering on
+@echo a vApp in vCloud. So be patient until we have a better upload
+@echo solution that waits until the import is really finished.
+ping 1.1.1.1 -n 1 -w 240000 > nul
 
 pushd %tmp_path%
 call :create_vagrantfile
