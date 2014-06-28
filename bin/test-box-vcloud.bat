@@ -48,10 +48,11 @@ ping 1.1.1.1 -n 1 -w 240000 > nul
 
 pushd %tmp_path%
 call :create_vagrantfile
-set VAGRANT_LOG=warn
+set VAGRANT_LOG=debug
 vagrant up --provider=%vagrant_provider%
 if ERRORLEVEL 1 goto :done
 
+set VAGRANT_LOG=warn
 echo Sleep 10 seconds
 ping 1.1.1.1 -n 1 -w 10000 > nul
 
