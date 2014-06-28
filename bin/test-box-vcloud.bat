@@ -40,25 +40,26 @@ goto :test_vagrant_box
 if ERRORLEVEL 1 goto :error_vcloud_upload
 
 :test_vagrant_box
+@echo.
 @echo Sleeping 240 seconds for vCloud to finish vAppTemplate import
 @echo Tests with 120 seconds still cause a 500 internal error while powering on
 @echo a vApp in vCloud. So be patient until we have a better upload
 @echo solution that waits until the import is really finished.
-ping 1.1.1.1 -n 1 -w 240000 > nul
+@ping 1.1.1.1 -n 1 -w 240000 > nul
 
 pushd %tmp_path%
 call :create_vagrantfile
 set VAGRANT_LOG=debug
 echo USERPROFILE = %USERPROFILE%
 if exist %USERPROFILE%\.ssh\known_hosts type %USERPROFILE%\.ssh\known_hosts
-del /Y %USERPROFILE%\.ssh\known_hosts
+del /F %USERPROFILE%\.ssh\known_hosts
 if exist %USERPROFILE%\.ssh\known_hosts echo known_hosts still here!!
 vagrant up --provider=%vagrant_provider%
 if ERRORLEVEL 1 goto :done
 
 set VAGRANT_LOG=warn
-echo Sleep 10 seconds
-ping 1.1.1.1 -n 1 -w 10000 > nul
+@echo Sleep 10 seconds
+@ping 1.1.1.1 -n 1 -w 10000 > nul
 
 vagrant destroy -f
 if ERRORLEVEL 1 goto :done
