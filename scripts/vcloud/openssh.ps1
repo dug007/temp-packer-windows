@@ -84,7 +84,7 @@ netsh advfirewall firewall add rule name="ssh" dir=in action=allow protocol=TCP 
 
 # start OpenSSH after WinRM service
 Write-Host "Add DependOnService WinRM"
-reg add "HKLM\SYSTEM\CurrentControlSet\services\OpenSSHd" /v "DependOnService" /t REG_MULTI_SZ /d Tcpip\0WinRM /f
+# reg add "HKLM\SYSTEM\CurrentControlSet\services\OpenSSHd" /v "DependOnService" /t REG_MULTI_SZ /d Tcpip\0WinRM /f
 
 if ($AutoStart -eq $true) {
     Start-Service "OpenSSHd"
