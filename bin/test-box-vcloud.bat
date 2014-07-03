@@ -75,7 +75,7 @@ if exist %USERPROFILE%\.ssh\known_hosts echo known_hosts still here!!
 vagrant up --provider=%vagrant_provider%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 
-set VAGRANT_LOG=warn
+set VAGRANT_LOG=debug
 @echo Sleep 10 seconds
 @ping 1.1.1.1 -n 1 -w 10000 > nul
 
@@ -85,6 +85,7 @@ popd
 
 if %quick%==1 goto :done
 
+set VAGRANT_LOG=warn
 vagrant box remove %box_name% --provider=%box_provider%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 
