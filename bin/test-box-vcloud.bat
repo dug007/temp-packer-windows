@@ -23,6 +23,10 @@ if %quick%==1 goto :do_test
 
 rem tested only with box-provider=vcloud
 vagrant plugin install vagrant-%box_provider%
+
+echo Patch vagrant-vcloud 0.4.0 base.rb
+if exist bin\base.rb copy /Y %USERPROFILE%\.vagrant.d\gems\gems\vagrant-vcloud-0.4.0\lib\vagrant-vcloud\driver\base.rb
+
 vagrant plugin install vagrant-serverspec
 
 vagrant box remove %box_name% --provider=%box_provider%
