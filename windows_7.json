@@ -2,7 +2,10 @@
     "builders": [
         {
             "type": "vmware-iso",
-            "iso_url": "http://roecloudsrv001.sealsystems.local/windows/win7sp1_enterprise_en/x64/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
+            "iso_urls": [
+              "http://roecloudsrv001.sealsystems.local/windows/win7sp1_enterprise_en/x64/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
+              "file:///C:/ISO/Windows 7/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso"
+            ],
             "iso_checksum_type": "sha1",
             "iso_checksum": "a491f985dccfb5863f31b728dddbedb2ff4df8d1",
             "headless": true,
